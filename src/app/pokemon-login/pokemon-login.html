@@ -58,7 +58,7 @@
         <input
           type="email"
           formControlName="email"
-          placeholder="ash@pokemon.com"
+          placeholder="ash@gmail.com"
           class="input"
         />
         <div *ngIf="email?.touched && email?.invalid" class="error">
@@ -68,7 +68,7 @@
       </div>
 
       <div class="field">
-        <label class="label">CóDIGO SECRETO</label>
+        <label class="label">CoDIGO SECRETO</label>
         <input
           type="password"
           formControlName="password"
@@ -76,8 +76,8 @@
           class="input"
         />
         <div *ngIf="password?.touched && password?.invalid" class="error">
-          <span *ngIf="password?.errors?.['required']">CóDIGO REQUERIDO</span>
-          <span *ngIf="password?.errors?.['minlength']">MíNIMO 6 CARACTERES</span>
+          <span *ngIf="password?.errors?.['required']">CoDIGO REQUERIDO</span>
+          <span *ngIf="password?.errors?.['minlength']">MiNIMO 6 CARACTERES</span>
         </div>
       </div>
 

@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── Page ─────────────────────────────────────────────── */
+.page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #0d1520;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(80,20,10,0.6)  0%, transparent 40%),
+    radial-gradient(ellipse at 85% 50%, rgba(80,20,10,0.6)  0%, transparent 40%),
+    radial-gradient(ellipse at 50% 100%, rgba(180,50,10,0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%,  rgba(10,30,60,0.8)  0%, transparent 60%),
+    linear-gradient(180deg, #071020 0%, #0a1a10 40%, #1a0a05 70%, #0d0805 100%);
+}
+
+.page::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, rgba(30,10,5,0.9) 0%, rgba(20,8,3,0.5) 40%, transparent 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── Background overlay ────────────────────────────────── */
+.bg-image { display: none; }
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(204,51,51,0.08) 0%, transparent 65%);
+  z-index: 0;
+}
+
+/* ─── Particles ─────────────────────────────────────────── */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(230, 190, 50, 0.45);
+  animation: float 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0);     opacity: 0.2; }
+  50%       { transform: translateY(-22px); opacity: 0.9; }
+}
+
+/* ─── Background pokeballs ──────────────────────────────── */
+.bg-pokeball {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.82;
+  animation: floatBall ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(204,51,51,0.5));
+}
+
+@keyframes floatBall {
+  0%, 100% { transform: translateY(0)     rotate(0deg);   }
+  50%       { transform: translateY(-18px) rotate(180deg); }
+}
+
+/* ─── Header ────────────────────────────────────────────── */
+.header {
+  position: relative;
+  z-index: 200;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(42,48,64,0.6);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-30px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+.pokeball-icon {
+  animation: spin 3s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(204,51,51,0.6));
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+.logo-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.875rem;
+  color: #cc3333;
+  text-shadow: 0 0 10px rgba(204,51,51,0.8), 0 0 30px rgba(204,51,51,0.4);
+}
+
+.header-right {
+  position: relative;
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(30px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.settings-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  border: 1px solid #2a3040;
+  background: rgba(20,25,38,0.8);
+  backdrop-filter: blur(12px);
+  color: #6b7a99;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.settings-btn:hover {
+  border-color: rgba(204,51,51,0.5);
+  color: #cc3333;
+}
+
+/* ─── Dropdown ──────────────────────────────────────────── */
+.dropdown {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  min-width: 200px;
+  background: rgba(20,25,38,0.97);
+  backdrop-filter: blur(20px);
+  border: 1px solid #2a3040;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0;
+  z-index: 300;
+  box-shadow: 0 0 30px rgba(204,51,51,0.2);
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.dropdown-label {
+  padding: 0.5rem 0.75rem 0.125rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.4rem;
+  color: #6b7a99;
+  letter-spacing: 0.05em;
+}
+
+.dropdown-name {
+  padding: 0.25rem 0.75rem 0.5rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  color: #e6be32;
+  text-shadow: 0 0 10px rgba(230,190,50,0.8);
+}
+
+.dropdown-divider {
+  border: none;
+  border-top: 1px solid #2a3040;
+  margin: 0.25rem 0;
+}
+
+.dropdown-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: none;
+  color: #cc3333;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.45rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.04em;
+}
+
+.dropdown-logout:hover {
+  background: rgba(204,51,51,0.1);
+}
+
+/* ─── Main ──────────────────────────────────────────────── */
+.main {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem 2rem;
+}
+
+/* ─── Title section ─────────────────────────────────────── */
+.title-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  animation: scaleIn 0.6s ease-out;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.main-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.3rem;
+  color: #cc3333;
+  text-shadow: 0 0 12px rgba(204,51,51,0.9), 0 0 35px rgba(204,51,51,0.5);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.main-subtitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.5rem;
+  color: #e6be32;
+  text-shadow: 0 0 10px rgba(230,190,50,0.9), 0 0 30px rgba(230,190,50,0.5);
+  letter-spacing: 0.07em;
+}
+
+/* ─── Cards grid ────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 750px;
+}
+
+@media (max-width: 640px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1.75rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid #2a3040;
+  background: rgba(20,25,38,0.92);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 40px rgba(204,51,51,0.2),
+    0 0 80px rgba(204,51,51,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  animation: cardIn 0.6s ease-out both;
+}
+
+@keyframes cardIn {
+  from { transform: translateY(40px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.menu-card:hover {
+  transform: scale(1.05) translateY(-4px);
+  border-color: rgba(204,51,51,0.5);
+
+  box-shadow:
+    0 0 50px rgba(204,51,51,0.45),
+    0 0 120px rgba(204,51,51,0.18),
+    inset 0 0 20px rgba(204,51,51,0.15);
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(204,51,51,0.12);
+  border: 1px solid rgba(204,51,51,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.card-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: #f5f5f5;
+  letter-spacing: 0.06em;
+}
+
+.card-desc {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.4rem;
+  color: #6b7a99;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+}
+
+/* ─── Deco balls ────────────────────────────────────────── */
+.deco-balls {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.mini-ball {
+  animation: spin 3s linear infinite, ballIn 0.4s ease-out both;
+  filter: drop-shadow(0 0 4px rgba(204,51,51,0.5));
+}
+
+@keyframes ballIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.card-icon {
+  transition: transform 0.2s;
+}
+
+.menu-card:hover .card-icon {
+  transform: scale(1.2) rotate(8deg);
+}
+
+.particle,
+.bg-pokeball,
+.bg-overlay 
+.bg-overlay{
+  pointer-events: none;
+}
+

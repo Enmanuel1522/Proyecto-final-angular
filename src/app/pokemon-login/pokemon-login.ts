@@ -45,7 +45,7 @@ constructor(private fb: FormBuilder, private router: Router, private cd: ChangeD
 
   // Creacion de la cuenta 
   localStorage.setItem('registeredUser', JSON.stringify({
-    email: 'ash@pokemon.com',
+    email: 'ash@gmail.com',
     password: 'pikachu123'
   }));
 }
@@ -85,9 +85,7 @@ onSubmit(): void {
       this.router.navigate(['/home']);
 
     } else {
-
       this.loginError = true;
-
     }
 
     this.isLoading = false;
